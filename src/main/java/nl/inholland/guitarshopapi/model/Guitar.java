@@ -48,12 +48,6 @@ public class Guitar {
   public void setPrice(double price) {
     if (price < 0) throw new IllegalArgumentException("Price cannot be below zero");
     this.price = price;
-  public double getPrice() {
-    return price;
-  }
-
-  public void setPrice(double price) {
-    this.price = price;
   }
 
   @Override
