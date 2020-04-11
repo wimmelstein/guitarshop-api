@@ -7,7 +7,10 @@ public class Guitar {
   private String model;
   private double price;
 
-  public Guitar(long id, String brand, String model, double price ) {
+  public Guitar() {
+  }
+
+  public Guitar(long id, String brand, String model, double price) {
     this.id = id;
     this.brand = brand;
     this.model = model;
@@ -38,6 +41,13 @@ public class Guitar {
     this.model = model;
   }
 
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    if (price < 0) throw new IllegalArgumentException("Price cannot be below zero");
+    this.price = price;
   public double getPrice() {
     return price;
   }

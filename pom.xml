@@ -10,13 +10,24 @@
 	</parent>
 	<groupId>nl.inholland</groupId>
 	<artifactId>guitarshop-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>guitarshop-api</name>
 	<description>Inholland Demo Guitar Shop</description>
 
 	<properties>
 		<java.version>11</java.version>
 	</properties>
+
+	<developers>
+		<developer>
+			<name>Wim Wiltenburg</name>
+			<email>willem .wiltenburg@inholland.nl</email>
+			<url>https://github.com/wimmelstein</url>
+			<roles>
+				<role>Maintainer</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<dependencies>
 		<dependency>

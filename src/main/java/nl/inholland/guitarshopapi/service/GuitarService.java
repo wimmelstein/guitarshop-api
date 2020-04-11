@@ -14,9 +14,9 @@ public class GuitarService {
   public GuitarService() {
 
     this.guitars =  Arrays.asList(
-        new Guitar(1L,"Fender" , "Stratocaster", 1499.00),
-        new Guitar(2l, "Fender", "Telecaster", 1299.00),
-        new Guitar(3L, "Gibson", "Les Paul",2499.00)
+        new Guitar(1L,"Fender", "Telecaster", 899),
+        new Guitar(2l, "Fender", "Stratcaster", 1299),
+        new Guitar(3L, "Gibson", "Les Paul", 2999)
     );
   }
 
