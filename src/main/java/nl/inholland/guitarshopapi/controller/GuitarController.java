@@ -2,10 +2,12 @@ package nl.inholland.guitarshopapi.controller;
 
 import nl.inholland.guitarshopapi.model.Guitar;
 import nl.inholland.guitarshopapi.service.GuitarService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,14 +17,39 @@ import java.util.List;
 @RequestMapping("guitars")
 public class GuitarController {
 
-  @Autowired
-  private GuitarService service;
+  private GuitarService guitarService;
+
+  public GuitarController(GuitarService guitarService) {
+    this.guitarService = guitarService;
+  }
 
   @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity getAllGuitars() {
-    List<Guitar> guitars = service.getAllGuitars();
+    List<Guitar> guitars = guitarService.getAllGuitars();
     return ResponseEntity
         .status(200)
         .body(guitars);
+  }
+
+  @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity getGuitarById(@PathVariable long id) {
+    try {
+      Guitar guitar = guitarService.getGuitarById(id);
+      return ResponseEntity.status(HttpStatus.OK).body(guitar);
+    } catch (IllegalArgumentException iae) {
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+  }
+
+  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity createGuitar(@RequestBody Guitar guitar) {
+    guitarService.addGuitar(guitar);
+    return ResponseEntity.status(HttpStatus.CREATED).body(guitar.getId());
+  }
+
+  @RequestMapping(value = "/value/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity getValueByGuitarId(@PathVariable long id) {
+    int value = guitarService.valueByGuitarId(id);
+    return ResponseEntity.status(HttpStatus.OK).body(value);
   }
 }

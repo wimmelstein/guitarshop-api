@@ -1,7 +1,14 @@
 package nl.inholland.guitarshopapi.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
 public class Guitar {
 
+  @Id
+  @SequenceGenerator(name = "guitar_seq", initialValue = 1000001)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guitar_seq")
   private long id;
   private String brand;
   private String model;
@@ -10,8 +17,7 @@ public class Guitar {
   public Guitar() {
   }
 
-  public Guitar(long id, String brand, String model, double price) {
-    this.id = id;
+  public Guitar(String brand, String model, double price) {
     this.brand = brand;
     this.model = model;
     this.price = price;
