@@ -9,6 +9,7 @@ To check out each branch, do e.g.:
 
 Branches currently available:
 
-lesson1/my-first-api
+* lesson1/my-first-api
+* lesson3/spring-data
 
 ***Do not push to this repository***
