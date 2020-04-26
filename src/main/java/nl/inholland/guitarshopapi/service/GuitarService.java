@@ -36,4 +36,8 @@ public class GuitarService {
   public int valueByGuitarId(long id) {
     return stockRepository.getStockValueByGuitarId(id);
   }
+
+  public List<Guitar> getGuitarsByMinimumPrice(double minimum) {
+    return guitarRepository.getAllByPriceGreaterThanEqualOrderById(minimum);
+  }
 }
