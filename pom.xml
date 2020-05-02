@@ -71,6 +71,26 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!--
+			Need to configure:
+			1) Tomcat server with username and password in maven settings.xml
+			2) In tomcat-users.xml a user must have the role: manager-script
+			3) The manager app must exist within webapps directory
+			4) Tomcat server must be running
+			Note: tomcat7 plugin works with Tomcat 8
+			Deploy with: mvn tomcat7:deploy
+			-->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>http://localhost:8080/manager/text</url>
+					<server>TomcatServer</server>
+					<path>/guitarshop</path>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
