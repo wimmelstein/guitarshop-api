@@ -3,6 +3,7 @@ package nl.inholland.guitarshopapi.model;
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Stock {
 
     @Id

@@ -1,9 +1,12 @@
 package nl.inholland.guitarshopapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Guitar {
 
   @Id
