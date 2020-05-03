@@ -48,7 +48,7 @@ public class GuitarController {
     return ResponseEntity.status(HttpStatus.CREATED).body(guitar.getId());
   }
 
-  @RequestMapping(value = "/value/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "{id}/value", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity getValueByGuitarId(@PathVariable long id) {
     int value = guitarService.valueByGuitarId(id);
     return ResponseEntity.status(HttpStatus.OK).body(value);

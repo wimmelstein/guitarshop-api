@@ -6,13 +6,17 @@ import nl.inholland.guitarshopapi.model.Guitar;
 import nl.inholland.guitarshopapi.model.Stock;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 @Component
+@ConditionalOnProperty(prefix = "guitarshop.autorun", name = "enabled", havingValue = "true", matchIfMissing = true)
+@Transactional
 public class MyApplicationRunner implements ApplicationRunner {
 
   private GuitarRepository guitarRepository;
