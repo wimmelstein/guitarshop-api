@@ -4,6 +4,7 @@ import nl.inholland.guitarshopapi.dao.GuitarRepository;
 import nl.inholland.guitarshopapi.dao.StockRepository;
 import nl.inholland.guitarshopapi.model.Guitar;
 import nl.inholland.guitarshopapi.model.Stock;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,9 @@ public class MyApplicationRunner implements ApplicationRunner {
     this.guitarRepository = guitarRepository;
     this.stockRepository = stockRepository;
   }
+
+  @Value( "${guitarshop.default.quantity}")
+  private int defaultQuantity;
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
@@ -46,5 +50,7 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     int quantity = stockRepository.getStockValueByGuitarId(1000001L);
     System.out.println("Quantity: " + quantity);
+
+    System.out.println("Default quantity " + defaultQuantity);
   }
 }

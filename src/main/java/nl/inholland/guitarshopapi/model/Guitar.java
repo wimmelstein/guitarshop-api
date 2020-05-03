@@ -2,7 +2,13 @@ package nl.inholland.guitarshopapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
@@ -10,7 +16,7 @@ import javax.persistence.*;
 public class Guitar {
 
   @Id
-  @SequenceGenerator(name = "guitar_seq", initialValue = 1000001)
+  @SequenceGenerator(name = "guitar_seq", initialValue = 1000001, allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guitar_seq")
   private long id;
   private String brand;
