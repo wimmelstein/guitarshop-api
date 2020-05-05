@@ -5,20 +5,22 @@ import nl.inholland.guitarshopapi.service.GuitarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.stereotype.Component;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import java.util.List;
 
-@Controller
-@RequestMapping("guitars")
+@Component
+@Path("guitars")
+@Produces(MediaType.APPLICATION_JSON_VALUE)
 public class GuitarController {
 
   @Autowired
   private GuitarService service;
 
-  @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+  @GET
   public ResponseEntity getAllGuitars() {
     List<Guitar> guitars = service.getAllGuitars();
     return ResponseEntity
