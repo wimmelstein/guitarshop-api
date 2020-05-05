@@ -20,10 +20,12 @@ public class MyApplicationRunner implements ApplicationRunner {
 
   private GuitarRepository guitarRepository;
   private StockRepository stockRepository;
+  private PropertyConfiguration properties;
 
-  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository) {
+  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository, PropertyConfiguration properties) {
     this.guitarRepository = guitarRepository;
     this.stockRepository = stockRepository;
+    this.properties = properties;
   }
 
   @Value( "${guitarshop.default.quantity}")
@@ -54,5 +56,7 @@ public class MyApplicationRunner implements ApplicationRunner {
     System.out.println("Quantity: " + quantity);
 
     System.out.println("Default quantity " + defaultQuantity);
+
+    System.out.println("Application name: " + properties.getApplicationName());
   }
 }
