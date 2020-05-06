@@ -11,5 +11,7 @@ Branches currently available:
 
 * lesson1/my-first-api
 * lesson3/spring-data
+* lesson4/tips-and-tricks
+* lesson4/derby
 
 ***Do not push to this repository***
