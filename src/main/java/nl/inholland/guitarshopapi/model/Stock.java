@@ -22,7 +22,6 @@ public class Stock {
     private long id;
     private int quantity;
 
-    //TODO: Fix Delete
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="guitar_id")
     private Guitar guitar;
