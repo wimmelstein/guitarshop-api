@@ -24,8 +24,6 @@ public class StockController {
   public ResponseEntity getAllStocks() {
     try {
       List<Stock> stocks = stockService.getAllStocks();
-      System.out.println("In controller");
-      stocks.forEach(System.out::println);
       return ResponseEntity.status(200).body(stocks);
     } catch (Exception e) {
       return ResponseEntity.notFound().build();
