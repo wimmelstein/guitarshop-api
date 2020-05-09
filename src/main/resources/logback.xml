@@ -6,7 +6,7 @@
         </encoder>
     </appender>
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>d:\Temp\application_log</file>
+        <file>d:\Temp\application.log</file>
         <encoder>
             <pattern>%d %-5level [%thread] %class{36}: %msg%n</pattern>
         </encoder>

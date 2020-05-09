@@ -1,7 +1,9 @@
 package nl.inholland.guitarshopapi.configuration;
 
+import nl.inholland.guitarshopapi.dao.ApiKeyRepository;
 import nl.inholland.guitarshopapi.dao.GuitarRepository;
 import nl.inholland.guitarshopapi.dao.StockRepository;
+import nl.inholland.guitarshopapi.model.ApiKey;
 import nl.inholland.guitarshopapi.model.Guitar;
 import nl.inholland.guitarshopapi.model.Stock;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,11 +23,13 @@ public class MyApplicationRunner implements ApplicationRunner {
   private GuitarRepository guitarRepository;
   private StockRepository stockRepository;
   private PropertyConfiguration properties;
+  private ApiKeyRepository apiKeyRepository;
 
-  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository, PropertyConfiguration properties) {
+  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository, PropertyConfiguration properties, ApiKeyRepository apiKeyRepository) {
     this.guitarRepository = guitarRepository;
     this.stockRepository = stockRepository;
     this.properties = properties;
+    this.apiKeyRepository = apiKeyRepository;
   }
 
   @Value( "${guitarshop.default.quantity}")
@@ -58,5 +62,8 @@ public class MyApplicationRunner implements ApplicationRunner {
     System.out.println("Default quantity " + defaultQuantity);
 
     System.out.println("Application name: " + properties.getApplicationName());
+
+    apiKeyRepository.save(new ApiKey("2a3ae3ec-f6ef-495d-868e-d4f3b6346e30"));
+
   }
 }
