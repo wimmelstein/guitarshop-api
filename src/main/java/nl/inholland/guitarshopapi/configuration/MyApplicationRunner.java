@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 @Component
 @ConditionalOnProperty(prefix = "guitarshop.autorun", name = "enabled", havingValue = "true", matchIfMissing = true)
@@ -63,8 +64,16 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     System.out.println("Application name: " + properties.getApplicationName());
 
-    apiKeyRepository.save(new ApiKey("2a3ae3ec-f6ef-495d-868e-d4f3b6346e30"));
-    apiKeyRepository.findAll().forEach(a -> System.out.println("API Key: " + a));
+    /*
+    Generate random API Keys
+     */
+    for (int i = 0; i < 5; i++) {
+        UUID uuid = UUID.randomUUID();
+        apiKeyRepository.save(new ApiKey(uuid.toString()));
+    }
+
+    apiKeyRepository.findAll().forEach(System.out::println);
+
 
   }
 }
