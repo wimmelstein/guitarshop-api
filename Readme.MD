@@ -12,6 +12,8 @@ Branches currently available:
 * lesson1/my-first-api
 * lesson3/spring-data
 * lesson4/tips-and-tricks
+* lesson4/derby
+* lesson4/tips-and-tricks
 * lesson5/security-base (temporary branch)
 * lesson5/security-api-key
 * lesson5/security-users
