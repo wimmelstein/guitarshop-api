@@ -64,6 +64,7 @@ public class MyApplicationRunner implements ApplicationRunner {
     System.out.println("Application name: " + properties.getApplicationName());
 
     apiKeyRepository.save(new ApiKey("2a3ae3ec-f6ef-495d-868e-d4f3b6346e30"));
+    apiKeyRepository.findAll().forEach(a -> System.out.println("API Key: " + a));
 
   }
 }
