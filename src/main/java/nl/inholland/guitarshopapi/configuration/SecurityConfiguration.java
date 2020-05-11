@@ -33,7 +33,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers(HttpMethod.POST, "/guitars/**").hasRole("ADMIN")
         .anyRequest().authenticated()
         .and()
-        .formLogin().permitAll()
-        .successForwardUrl("/api");
+        .formLogin().permitAll();
       }
+
+      /*
+        In order for this to work, go to https://localhost:8443/api/login
+       */
 }
