@@ -22,4 +22,4 @@ For API Testing also the following branches are available:
 
 * api-testing/lesson1
 
-***Do not push to this repository***
+***Do not push or merge to the master branch ***
