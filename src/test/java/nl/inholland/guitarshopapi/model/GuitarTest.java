@@ -24,5 +24,4 @@ class GuitarTest {
         () -> guitar.setPrice(-1));
     assertEquals("Price cannot be below zero", exception.getMessage());
   }
-
 }
