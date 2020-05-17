@@ -16,6 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<cucumber.version>5.7.0</cucumber.version>
 	</properties>
 
 	<developers>
@@ -46,13 +47,13 @@
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>6.0.0-RC2</version>
+			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>6.0.0-RC2</version>
+			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 

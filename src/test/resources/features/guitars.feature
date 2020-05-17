@@ -1,4 +1,4 @@
-Feature: Endpoint tests
+Feature: Guitar tests
 
   Scenario: Retrieve all guitars is status OK
     When I retrieve all guitars
@@ -11,3 +11,7 @@ Feature: Endpoint tests
   Scenario: Getting one guitar
     When I retrieve guitar with id 1000001
     Then The guitar brand is "Fender"
+
+  Scenario: Creating a guitar
+    When I post a guitar
+    Then I get http status 200
