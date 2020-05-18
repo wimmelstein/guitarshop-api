@@ -49,7 +49,6 @@ public class StepDefinitions {
   @When("I retrieve guitar with id {int}")
   public void iRetrieveGuitarWithId(int id) throws URISyntaxException {
     URI uri = new URI(baseUrl + "/" + id);
-    HttpEntity<String> entity = new HttpEntity<>(null, headers);
     responseEntity = template.getForEntity(uri, String.class);
   }
 
@@ -66,7 +65,6 @@ public class StepDefinitions {
     ObjectMapper mapper = new ObjectMapper();
     Guitar guitar = new Guitar("Gibson", "Flying V", 2599);
     URI uri = new URI(baseUrl);
-    HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
     HttpEntity<String> entity = new HttpEntity<>(mapper.writeValueAsString(guitar), headers);
     responseEntity = template.postForEntity(uri, entity, String.class);

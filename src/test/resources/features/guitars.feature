@@ -14,4 +14,4 @@ Feature: Guitar tests
 
   Scenario: Creating a guitar
     When I post a guitar
-    Then I get http status 200
+    Then I get http status 201
