@@ -11,5 +11,5 @@ import org.junit.runner.RunWith;
     plugin = "pretty",
     strict = true
 )
-public class GuitarApiITTest {
+public class CucumberIT {
 }
