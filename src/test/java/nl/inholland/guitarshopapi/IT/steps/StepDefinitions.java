@@ -20,6 +20,7 @@ import java.net.URISyntaxException;
 
 public class StepDefinitions {
 
+
   RestTemplate template = new RestTemplate();
   ResponseEntity<String> responseEntity;
   String response;
