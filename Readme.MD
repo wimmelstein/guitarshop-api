@@ -21,5 +21,6 @@ Branches currently available:
 For API Testing also the following branches are available:
 
 * api-testing/lesson1
+* api-testing/lesson2
 
 ***Do not push or merge to the master branch ***
