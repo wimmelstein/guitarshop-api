@@ -7,7 +7,7 @@
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
-    <link href="css/wiltenburgit.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
     <meta charset="UTF-8">
 
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -30,19 +30,31 @@
                     contentType: "application/json",
                     success: function (success) {
                         $("#result").text((success));
-                    }
+                    },
+                    error: function(error) {
+                        if (error.status === 403) {
+                            $("#result").text(error.status === 403 ? "Unauthorized" : "Something unexpected went wrong")
+                        }
+                }
                 })
             });
         });
     </script>
 
 
-    <title>Title</title>
+    <title>Create guitar</title>
 </head>
 <body>
 
+<!--    <div id="navigation">-->
+<!--        <h1>Jack's Guitar Shop</h1>-->
+<!--    </div>-->
 <header>
-    <h1>Guitars</h1>
+        <div class="alignleft">Jack's Guitar Shop</div>
+        <div class="alignright">
+            <a href="/perform_logout">Logout</a>
+        </div>
+    <div style="clear: both;"></div>
 </header>
 
 <section id="create">
@@ -85,7 +97,7 @@
                     <br>
                     <div class="row">
                         <div class="form-group col-xs-12">
-                            <button id="submit" type="submit" class="btn btn-success btn-lg">Send</button>
+                            <button id="submit" type="submit" class="btn btn-success btn-lg">Create</button>
                         </div>
                     </div>
                 </form>
@@ -93,11 +105,11 @@
         </div>
     </div>
 </section>
-<hr class="star-primary">
+
 <section id="result-success">
-    <h2>
+    <h4>
         <div id="result" class="col-lg-12 text-center"></div>
-    </h2>
+    </h4>
 </section>
 </body>
 </html>
