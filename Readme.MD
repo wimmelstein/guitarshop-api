@@ -9,6 +9,21 @@ To check out each branch, do e.g.:
 
 Branches currently available:
 
-lesson1/my-first-api
+* lesson1/my-first-api
+* lesson3/spring-data
+* lesson4/tips-and-tricks
+* lesson4/derby
+* lesson4/tips-and-tricks
+* lesson5/security-base (temporary branch)
+* lesson5/security-api-key
+* lesson5/security-users
+* lesson5/users-with-login-page (in memory authentication)
+
+* generic/deploy-to-tomcat (out of scope for exam)
+
+For API Testing also the following branches are available:
+
+* api-testing/lesson1
+* api-testing/lesson2
 
 ***Do not push to this repository***
