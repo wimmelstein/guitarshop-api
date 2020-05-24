@@ -1,27 +1,29 @@
 package nl.inholland.guitarshopapi.configuration;
 
+import nl.inholland.guitarshopapi.service.UserDetailsServiceImpl;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+  private final UserDetailsServiceImpl userDetailsService;
+
+  public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
+    this.userDetailsService = userDetailsService;
+  }
+
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.inMemoryAuthentication()
-        .withUser("user")
-        .password("{noop}password") // {noop} means that password is being sent without encoding
-        .roles("USER")
-        .and()
-        .withUser("admin")
-        .password("{noop}password")
-        .roles("ADMIN");
-  }
+    auth.userDetailsService(userDetailsService);
+    }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -30,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/")
         .permitAll()
         .antMatchers(HttpMethod.GET, "/guitars/**").permitAll()
-        .antMatchers(HttpMethod.POST, "/guitars/**").hasRole("ADMIN")
+        .antMatchers(HttpMethod.POST, "/guitars/**").hasAnyAuthority("ADMIN")
         .anyRequest().authenticated()
         .and()
         .formLogin().permitAll();
@@ -39,4 +41,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       /*
         In order for this to work, go to https://localhost:8443/api/login
        */
+
+
+  @Bean
+  public BCryptPasswordEncoder encoder() {
+    return new BCryptPasswordEncoder();
+  }
 }

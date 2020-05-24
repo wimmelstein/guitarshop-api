@@ -4,7 +4,6 @@ import nl.inholland.guitarshopapi.dao.GuitarRepository;
 import nl.inholland.guitarshopapi.dao.StockRepository;
 import nl.inholland.guitarshopapi.dao.UserRepository;
 import nl.inholland.guitarshopapi.model.Guitar;
-import nl.inholland.guitarshopapi.model.GuitarshopUserDetails;
 import nl.inholland.guitarshopapi.model.Stock;
 import nl.inholland.guitarshopapi.model.User;
 import org.springframework.beans.factory.annotation.Value;
@@ -65,11 +64,14 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     System.out.println("Application name: " + properties.getApplicationName());
 
-    User user = new User("wimmel", new BCryptPasswordEncoder().encode("password"), "ADMIN");
-    userRepository.save(user);
+
+    List<User> users = Arrays.asList(
+        new User("user", new BCryptPasswordEncoder().encode("password"), "USER"),
+        new User("admin", new BCryptPasswordEncoder().encode("password"), "ADMIN")
+    );
+
+    users.forEach(userRepository::save);
     userRepository.findAll().forEach(System.out::println);
 
-    GuitarshopUserDetails userDetails = new GuitarshopUserDetails(user);
-    System.out.println(userDetails.getPassword());
   }
 }
