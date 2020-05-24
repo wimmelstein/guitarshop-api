@@ -20,6 +20,10 @@ public class User {
 
   private String username;
   private String password;
+  private boolean isAccountNonExpired = true;
+  private boolean isAccountNonLocked = true;
+  private boolean isCredentialsNonExpired = true;
+  private boolean isEnabled = true;
 
   @Enumerated(EnumType.STRING)
   private Role role;
@@ -52,5 +56,37 @@ public class User {
 
   public String getPassword() {
     return password;
+  }
+
+  public boolean isAccountNonExpired() {
+    return isAccountNonExpired;
+  }
+
+  public void setAccountNonExpired(boolean accountNonExpired) {
+    isAccountNonExpired = accountNonExpired;
+  }
+
+  public boolean isAccountNonLocked() {
+    return isAccountNonLocked;
+  }
+
+  public void setAccountNonLocked(boolean accountNonLocked) {
+    isAccountNonLocked = accountNonLocked;
+  }
+
+  public boolean isCredentialsNonExpired() {
+    return isCredentialsNonExpired;
+  }
+
+  public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+    isCredentialsNonExpired = credentialsNonExpired;
+  }
+
+  public boolean isEnabled() {
+    return isEnabled;
+  }
+
+  public void setEnabled(boolean enabled) {
+    isEnabled = enabled;
   }
 }

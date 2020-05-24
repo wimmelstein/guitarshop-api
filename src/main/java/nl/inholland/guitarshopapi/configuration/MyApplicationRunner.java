@@ -71,6 +71,9 @@ public class MyApplicationRunner implements ApplicationRunner {
     );
 
     users.forEach(userRepository::save);
+    User guest = new User("guest", new BCryptPasswordEncoder().encode("nologin"),"USER");
+    guest.setEnabled(false);
+    userRepository.save(guest);
     userRepository.findAll().forEach(System.out::println);
 
   }
