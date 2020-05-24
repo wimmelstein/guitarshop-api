@@ -29,13 +29,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable();
     http.authorizeRequests()
-        .antMatchers("/")
-        .permitAll()
         .antMatchers(HttpMethod.GET, "/guitars/**").permitAll()
-        .antMatchers(HttpMethod.POST, "/guitars/**").hasAnyAuthority("ADMIN")
+        .antMatchers(HttpMethod.POST, "/guitars/**").hasAuthority("ADMIN")
+        .antMatchers("/**").permitAll()
         .anyRequest().authenticated()
         .and()
-        .formLogin().permitAll();
+        .formLogin()
+        .loginPage("/login.html")
+        .loginProcessingUrl("/perform_login")
+        .defaultSuccessUrl("/create-guitar.html", true)
+        .permitAll()
+        .and()
+        .logout()
+        .logoutUrl("/perform_logout")
+        .deleteCookies("JSESSIONID")
+        .permitAll();
       }
 
       /*
