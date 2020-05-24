@@ -13,11 +13,11 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script>
         $(document).ready(function () {
-            var url = "guitars/";
+            const url = "/guitars";
 
             $("#submit").click(function (e) {
                 e.preventDefault();
-                var guitar = {
+                const guitar = {
                     "brand": $("#brand").val(),
                     "model": $("#model").val(),
                     "price": $("#price").val()
@@ -46,9 +46,6 @@
 </head>
 <body>
 
-<!--    <div id="navigation">-->
-<!--        <h1>Jack's Guitar Shop</h1>-->
-<!--    </div>-->
 <header>
         <div class="alignleft">Jack's Guitar Shop</div>
         <div class="alignright">
@@ -67,30 +64,28 @@
         </div>
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                 <form name="createGuitar" id="createGuitar" novalidate>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Brand</label>
-                            <input type="text" class="form-control" placeholder="Brand" id="brand" required
-                                   data-validation-required-message="Please enter your name.">
+                            <input type="text" class="form-control" placeholder="Brand" name="brand" required="required"
+                                   data-validation-required-message="Please enter the brand">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Model</label>
-                            <input type="text" class="form-control" placeholder="Model" id="model" required
-                                   data-validation-required-message="Please enter your email address.">
+                            <input type="text" class="form-control" placeholder="Model" name="model" required="required"
+                                   data-validation-required-message="Please enter a model.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Price</label>
-                            <input type="text" class="form-control" placeholder="Pricer" id="price" required
-                                   data-validation-required-message="Please enter your phone number.">
+                            <input type="text" class="form-control" placeholder="Price" name="price" required="required"
+                                   data-validation-required-message="Please enter a price.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
