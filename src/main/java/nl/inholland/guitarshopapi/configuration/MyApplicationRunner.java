@@ -2,12 +2,16 @@ package nl.inholland.guitarshopapi.configuration;
 
 import nl.inholland.guitarshopapi.dao.GuitarRepository;
 import nl.inholland.guitarshopapi.dao.StockRepository;
+import nl.inholland.guitarshopapi.dao.UserRepository;
 import nl.inholland.guitarshopapi.model.Guitar;
+import nl.inholland.guitarshopapi.model.GuitarshopUserDetails;
 import nl.inholland.guitarshopapi.model.Stock;
+import nl.inholland.guitarshopapi.model.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -21,11 +25,13 @@ public class MyApplicationRunner implements ApplicationRunner {
   private GuitarRepository guitarRepository;
   private StockRepository stockRepository;
   private PropertyConfiguration properties;
+  private UserRepository userRepository;
 
-  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository, PropertyConfiguration properties) {
+  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository, PropertyConfiguration properties, UserRepository userRepository) {
     this.guitarRepository = guitarRepository;
     this.stockRepository = stockRepository;
     this.properties = properties;
+    this.userRepository = userRepository;
   }
 
   @Value( "${guitarshop.default.quantity}")
@@ -59,6 +65,11 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     System.out.println("Application name: " + properties.getApplicationName());
 
+    User user = new User("wimmel", new BCryptPasswordEncoder().encode("password"), "ADMIN");
+    userRepository.save(user);
+    userRepository.findAll().forEach(System.out::println);
 
+    GuitarshopUserDetails userDetails = new GuitarshopUserDetails(user);
+    System.out.println(userDetails.getPassword());
   }
 }
