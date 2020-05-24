@@ -1,0 +1,23 @@
+#maptitle { margin-left: auto; margin-right: auto; }
+#mapid { height: 360px; margin-left: auto; margin-right: auto; }
+
+.alignleft {
+    float: left;
+    width:50%;
+    text-align:left;
+    font-size: 2em;
+    padding-left: 20px;
+}
+
+.alignright {
+    float: right;
+    padding-right: 20px;
+    width: 50%;
+    text-align:right;
+    font-size: 2em;
+}​,
+
+ .alignright a {
+    color: white;
+    text-decoration: none;
+ }
