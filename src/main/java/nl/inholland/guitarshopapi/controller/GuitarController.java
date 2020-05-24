@@ -42,10 +42,13 @@ public class GuitarController {
     }
   }
 
-  @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity createGuitar(@RequestBody Guitar guitar) {
+  @RequestMapping(
+      method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_JSON_VALUE,
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Guitar> createGuitar(@RequestBody Guitar guitar) {
     guitarService.addGuitar(guitar);
-    return ResponseEntity.status(HttpStatus.CREATED).body(guitar.getId());
+    return ResponseEntity.status(HttpStatus.CREATED).body(guitar);
   }
 
   @RequestMapping(

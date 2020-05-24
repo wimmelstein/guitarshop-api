@@ -10,36 +10,7 @@
     <link href="css/custom.css" rel="stylesheet">
     <meta charset="UTF-8">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script>
-        $(document).ready(function () {
-            const url = "/guitars";
-
-            $("#submit").click(function (e) {
-                e.preventDefault();
-                const guitar = {
-                    "brand": $("#brand").val(),
-                    "model": $("#model").val(),
-                    "price": $("#price").val()
-                };
-
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: JSON.stringify(guitar),
-                    contentType: "application/json",
-                    success: function (success) {
-                        $("#result").text((success));
-                    },
-                    error: function(error) {
-                        if (error.status === 403) {
-                            $("#result").text(error.status === 403 ? "Unauthorized" : "Something unexpected went wrong")
-                        }
-                }
-                })
-            });
-        });
-    </script>
+    <script src="guitars.js"></script>
 
 
     <title>Create guitar</title>
@@ -68,7 +39,7 @@
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Brand</label>
-                            <input type="text" class="form-control" placeholder="Brand" name="brand" required
+                            <input type="text" class="form-control" placeholder="Brand" id="brand" name="brand" required
                                    data-validation-required-message="Please enter the brand">
                             <p class="help-block text-danger"></p>
                         </div>
@@ -76,7 +47,7 @@
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Model</label>
-                            <input type="text" class="form-control" placeholder="Model" name="model" required
+                            <input type="text" class="form-control" placeholder="Model" id="model" name="model" required
                                    data-validation-required-message="Please enter a model.">
                             <p class="help-block text-danger"></p>
                         </div>
@@ -84,7 +55,7 @@
                     <div class="row control-group">
                         <div class="form-group col-xs-12 floating-label-form-group controls">
                             <label>Price</label>
-                            <input type="text" class="form-control" placeholder="Price" name="price" required
+                            <input type="text" class="form-control" placeholder="Price" id="price" name="price" required
                                    data-validation-required-message="Please enter a price.">
                             <p class="help-block text-danger"></p>
                         </div>
