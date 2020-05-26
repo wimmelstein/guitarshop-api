@@ -2,6 +2,7 @@ package nl.inholland.guitarshopapi.model;
 
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,7 +31,7 @@ public class User {
 
   public User(String username, String password, String role) {
     this.username = username;
-    this.password = password;
+    this.password = new BCryptPasswordEncoder().encode(password);
     this.role = Role.valueOf(role);
   }
 

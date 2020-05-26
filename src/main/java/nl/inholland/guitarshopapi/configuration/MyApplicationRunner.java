@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -66,12 +65,12 @@ public class MyApplicationRunner implements ApplicationRunner {
 
 
     List<User> users = Arrays.asList(
-        new User("user", new BCryptPasswordEncoder().encode("password"), "USER"),
-        new User("admin", new BCryptPasswordEncoder().encode("password"), "ADMIN")
+        new User("user","password", "USER"),
+        new User("admin", "passwor", "ADMIN")
     );
 
     users.forEach(userRepository::save);
-    User guest = new User("guest", new BCryptPasswordEncoder().encode("nologin"),"USER");
+    User guest = new User("guest", "nologin","USER");
     guest.setEnabled(false);
     userRepository.save(guest);
     userRepository.findAll().forEach(System.out::println);
