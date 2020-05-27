@@ -47,9 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
       }
 
       /*
-        In order for this to work, go to https://localhost:8443/api/login
+        In order for this to work, go to https://localhost:8443/login.html
        */
-
 
   @Bean
   public BCryptPasswordEncoder encoder() {
