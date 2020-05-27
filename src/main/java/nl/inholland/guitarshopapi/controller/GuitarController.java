@@ -1,10 +1,13 @@
 package nl.inholland.guitarshopapi.controller;
 
 import nl.inholland.guitarshopapi.model.Guitar;
+import nl.inholland.guitarshopapi.model.SecurityUserDetails;
+import nl.inholland.guitarshopapi.model.User;
 import nl.inholland.guitarshopapi.service.GuitarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +29,7 @@ public class GuitarController {
 
   @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity getAllGuitars() {
+    System.out.println("User id: " +   getUserId());
     List<Guitar> guitars = guitarService.getAllGuitars();
     return ResponseEntity
         .status(200)
@@ -63,5 +67,11 @@ public class GuitarController {
   @RequestMapping(value="", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, params = {"minprice"})
   public ResponseEntity getGuitarsByMinimumPrice(@RequestParam("minprice") double price) {
     return ResponseEntity.status(HttpStatus.OK).body(guitarService.getGuitarsByMinimumPrice(price));
+  }
+
+  private long getUserId() {
+    Object bla = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User user = ((SecurityUserDetails) bla).getUser();
+    return user.getId();
   }
 }

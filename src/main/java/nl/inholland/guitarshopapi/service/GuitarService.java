@@ -17,6 +17,9 @@ public class GuitarService {
   @Autowired
   private StockRepository stockRepository;
 
+  @Autowired
+  private UserDetailsServiceImpl service;
+
   public GuitarService() {
   }
 
@@ -40,4 +43,6 @@ public class GuitarService {
   public List<Guitar> getGuitarsByMinimumPrice(double minimum) {
     return guitarRepository.getAllByPriceGreaterThanEqualOrderById(minimum);
   }
+
+
 }
