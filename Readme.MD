@@ -17,9 +17,13 @@ Branches currently available:
 * lesson5/security-base (temporary branch)
 * lesson5/security-api-key
 * lesson5/security-users
+* lesson5/security-with-login-page
+* lesson7/security-userdetails-database
+* lesson7/security-prepared (temporary branch)
 
 For API Testing also the following branches are available:
 
 * api-testing/lesson1
+* api-testing/lesson2
 
 ***Do not push to this repository***
