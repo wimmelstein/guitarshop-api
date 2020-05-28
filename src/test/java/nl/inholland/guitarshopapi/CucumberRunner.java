@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "classpath:",
+    strict = true,
     plugin = {"pretty"}
 )
 public class CucumberRunner {

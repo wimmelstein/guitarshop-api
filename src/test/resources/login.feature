@@ -16,3 +16,9 @@ Feature: Logging into the application
     When I enter the username "guest"
     And I enter password "nologin"
     Then The url contains "?error"
+
+  Scenario: Logging in with a non-existing user
+    Given I visit the login page
+    When I enter the username "bad_user"
+    And I enter password "password"
+    Then The url contains "?error"
