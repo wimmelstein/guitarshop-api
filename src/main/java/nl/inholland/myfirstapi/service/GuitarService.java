@@ -21,7 +21,7 @@ public class GuitarService {
         );
     }
 
-    public Guitar createGuitar(Guitar guitar) {
+    public Guitar addGuitar(Guitar guitar) {
         guitars.add(guitar);
         return guitar;
     }

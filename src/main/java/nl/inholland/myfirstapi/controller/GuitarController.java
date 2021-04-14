@@ -2,7 +2,6 @@ package nl.inholland.myfirstapi.controller;
 
 import nl.inholland.myfirstapi.model.Guitar;
 import nl.inholland.myfirstapi.service.GuitarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,7 +28,7 @@ public class GuitarController {
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Guitar> createGuitar(@RequestBody Guitar guitar) {
-        service.createGuitar(guitar);
+        service.addGuitar(guitar);
         return ResponseEntity.status(201).body(guitar);
     }
 }
