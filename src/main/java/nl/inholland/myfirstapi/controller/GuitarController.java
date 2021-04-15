@@ -2,6 +2,7 @@ package nl.inholland.myfirstapi.controller;
 
 import nl.inholland.myfirstapi.model.Guitar;
 import nl.inholland.myfirstapi.service.GuitarService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,12 +24,12 @@ public class GuitarController {
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Guitar>> getGuitars() {
-        return ResponseEntity.status(200).body(service.getGuitars());
+        return new ResponseEntity<>(service.getGuitars(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Guitar> createGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);
-        return ResponseEntity.status(201).body(guitar);
+        return new ResponseEntity<>(guitar, HttpStatus.CREATED);
     }
 }
