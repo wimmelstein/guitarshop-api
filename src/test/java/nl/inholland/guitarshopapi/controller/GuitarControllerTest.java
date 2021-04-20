@@ -1,5 +1,6 @@
 package nl.inholland.guitarshopapi.controller;
 
+import nl.inholland.guitarshopapi.model.Brand;
 import nl.inholland.guitarshopapi.model.Guitar;
 import nl.inholland.guitarshopapi.service.GuitarService;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class GuitarControllerTest {
     Removed the servlet context /api for testing
      */
 
-    given(service.getAllGuitars()).willReturn(Arrays.asList(new Guitar("Fender", "Stratocaster", 1299)));
+    given(service.getAllGuitars()).willReturn(Arrays.asList(new Guitar(new Brand("fender"), "Stratocaster", 1299)));
     this.mvc.perform(get("/guitars"))
         .andExpect(status().isOk());
   }

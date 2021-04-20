@@ -1,11 +1,12 @@
 package nl.inholland.guitarshopapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
+//@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"brand", "model"})})
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Guitar {
 
@@ -13,7 +14,10 @@ public class Guitar {
   @SequenceGenerator(name = "guitar_seq", initialValue = 1000001)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "guitar_seq")
   private long id;
-  private String brand;
+
+  @ManyToOne
+  @JsonBackReference
+  private Brand brand;
   private String model;
   private double price;
 
@@ -25,7 +29,7 @@ public class Guitar {
   public Guitar() {
   }
 
-  public Guitar(String brand, String model, double price) {
+  public Guitar(Brand brand, String model, double price) {
     this.brand = brand;
     this.model = model;
     this.price = price;
@@ -39,11 +43,11 @@ public class Guitar {
     this.id = id;
   }
 
-  public String getBrand() {
+  public Brand getBrand() {
     return brand;
   }
 
-  public void setBrand(String brand) {
+  public void setBrand(Brand brand) {
     this.brand = brand;
   }
 

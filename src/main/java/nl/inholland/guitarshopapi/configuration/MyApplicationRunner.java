@@ -1,7 +1,9 @@
 package nl.inholland.guitarshopapi.configuration;
 
+import nl.inholland.guitarshopapi.dao.BrandRepository;
 import nl.inholland.guitarshopapi.dao.GuitarRepository;
 import nl.inholland.guitarshopapi.dao.StockRepository;
+import nl.inholland.guitarshopapi.model.Brand;
 import nl.inholland.guitarshopapi.model.Guitar;
 import nl.inholland.guitarshopapi.model.Stock;
 import org.springframework.boot.ApplicationArguments;
@@ -21,19 +23,28 @@ public class MyApplicationRunner implements ApplicationRunner {
 
   private GuitarRepository guitarRepository;
   private StockRepository stockRepository;
+  private BrandRepository brandRepository;
 
-  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository) {
+  public MyApplicationRunner(GuitarRepository guitarRepository, StockRepository stockRepository, BrandRepository brandRepository) {
     this.guitarRepository = guitarRepository;
     this.stockRepository = stockRepository;
+    this.brandRepository = brandRepository;
   }
 
   @Override
   public void run(ApplicationArguments args) throws Exception {
+
+    Brand fender = new Brand("Fender");
+    Brand gibson = new Brand("Gibson");
+
+    brandRepository.save(fender);
+    brandRepository.save(gibson);
+
     List<Guitar> guitars =
         Arrays.asList(
-            new Guitar("Fender", "Telecaster", 899),
-            new Guitar("Fender", "Stratcaster", 1299),
-            new Guitar("Gibson", "Les Paul", 2999));
+            new Guitar(fender, "Telecaster", 899),
+            new Guitar(fender, "Stratocaster", 1299),
+            new Guitar(gibson, "Les Paul", 2999));
 
     guitars.forEach(guitarRepository::save);
 
