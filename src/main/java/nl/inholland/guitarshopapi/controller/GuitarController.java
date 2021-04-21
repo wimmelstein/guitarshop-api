@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Controller
@@ -37,7 +38,7 @@ public class GuitarController {
     try {
       Guitar guitar = guitarService.getGuitarById(id);
       return ResponseEntity.status(HttpStatus.OK).body(guitar);
-    } catch (IllegalArgumentException iae) {
+    } catch (EntityNotFoundException iae) {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
   }
