@@ -2,6 +2,7 @@ package nl.inholland.myfirstapi.controller;
 
 import nl.inholland.myfirstapi.model.Guitar;
 import nl.inholland.myfirstapi.service.GuitarService;
+import nl.inholland.myfirstapi.service.GuitarServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +17,20 @@ import java.util.List;
 @RequestMapping(value = "guitars")
 public class GuitarController {
 
-    private GuitarService service;
+    private GuitarService guitarService;
 
-    public GuitarController(GuitarService service) {
-        this.service = service;
+    public GuitarController(GuitarService guitarService) {
+        this.guitarService = guitarService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Guitar>> getGuitars() {
-        return new ResponseEntity<>(service.getGuitars(), HttpStatus.OK);
+        return new ResponseEntity<>(guitarService.getGuitars(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Guitar> createGuitar(@RequestBody Guitar guitar) {
-        service.addGuitar(guitar);
+        guitarService.addGuitar(guitar);
         return new ResponseEntity<>(guitar, HttpStatus.CREATED);
     }
 }
