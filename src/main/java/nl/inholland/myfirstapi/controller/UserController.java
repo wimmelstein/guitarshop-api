@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping(value = "/users")
 public class UserController {
@@ -25,7 +27,7 @@ public class UserController {
     @PostMapping(value = "/add")
     public ResponseEntity<String> addUser(@RequestBody LoginDTO loginDTO) {
 
-        String token  = userService.add(loginDTO.getUsername(), loginDTO.getPassword());
+        String token  = userService.add(loginDTO.getUsername(), loginDTO.getPassword(), new ArrayList<>());
         return ResponseEntity.ok(token);
     }
 

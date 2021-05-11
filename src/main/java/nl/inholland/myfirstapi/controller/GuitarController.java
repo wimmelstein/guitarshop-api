@@ -5,6 +5,7 @@ import nl.inholland.myfirstapi.service.GuitarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class GuitarController {
         return new ResponseEntity<>(service.getGuitars(), HttpStatus.OK);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Guitar> createGuitar(@RequestBody Guitar guitar) {
         service.addGuitar(guitar);

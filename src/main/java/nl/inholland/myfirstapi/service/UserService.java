@@ -1,5 +1,6 @@
 package nl.inholland.myfirstapi.service;
 
+import lombok.extern.java.Log;
 import nl.inholland.myfirstapi.model.User;
 import nl.inholland.myfirstapi.model.dto.LoginDTO;
 import nl.inholland.myfirstapi.repository.UserRepository;
@@ -20,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
+@Log
 public class UserService {
 
     @Autowired
@@ -40,13 +42,18 @@ public class UserService {
         }
     }
 
-    public String add(String username, String password) {
-        System.out.println(String.format("User service: %s, %s", username, password));
+    public String add(String username, String password, List<Role> roles) {
         if (userRepository.findUserByUsername(username) == null) {
             User user = new User();
             user.setUsername(username);
             user.setPassword(passwordEncoder().encode(password));
-            user.setRoles(List.of(Role.ROLE_ADMIN, Role.ROLE_USER));
+            if (roles.size() == 0) {
+                user.setRoles(List.of(Role.ROLE_USER, Role.ROLE_ADMIN));
+
+            } else {
+                user.setRoles(roles);
+            }
+            log.info(user.toString());
             userRepository.save(user);
             String token = jwtTokenProvider.createToken(user.getUsername(), user.getRoles());
             return token;
