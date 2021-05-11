@@ -3,10 +3,7 @@ package nl.inholland.myfirstapi.model;
 import nl.inholland.myfirstapi.security.Role;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -22,6 +19,7 @@ public class User {
     }
 
     @Id
+    @GeneratedValue
     private long id;
     private String username;
     private String password;

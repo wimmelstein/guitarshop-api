@@ -1,5 +1,6 @@
 package nl.inholland.myfirstapi.filter;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -12,14 +13,17 @@ import java.util.logging.Logger;
 public class LargeRequestFilter implements Filter {
 
     public final Logger logger = Logger.getLogger(this.getClass().getName());
-    public static final int MAX_REQUEST_SIZE=10000000;
+
+    @Value("${guitarshop.security.request.size.max}")
+    private int maxSize;
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        logger.info("Maximum request size: " + maxSize);
         logger.info(String.format("Got request with size %d", servletRequest.getContentLength()));
         int size = servletRequest.getContentLength();
-        if (size > MAX_REQUEST_SIZE) {
-            logger.severe(String.format("Request is larger than %s, and is rejected", MAX_REQUEST_SIZE));
+        if (size > maxSize) {
+            logger.severe(String.format("Request is larger than %s, and is rejected", maxSize));
             throw new ServletException("Request too large");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
