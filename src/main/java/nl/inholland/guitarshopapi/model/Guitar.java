@@ -17,11 +17,6 @@ public class Guitar {
   private String model;
   private double price;
 
-  @OneToOne(mappedBy = "guitar", cascade = CascadeType.ALL,
-      fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name="guitar_id")
-  private Stock stock;
-
   public Guitar() {
   }
 
